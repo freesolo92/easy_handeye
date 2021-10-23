@@ -169,6 +169,7 @@ class CvBridge(object):
         else:
             im = np.ndarray(shape=(img_msg.height, img_msg.width, n_channels),
                            dtype=dtype, buffer=img_msg.data) 
+        # Changed for using with melodic and Python2.7
         # else:
         #     if(type(img_msg.data) == str):
         #         im = np.ndarray(shape=(img_msg.height, img_msg.width, n_channels), dtype=dtype, buffer=img_msg.data.encode())
