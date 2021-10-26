@@ -30,7 +30,11 @@ add_service_files(
         PlanToSelectedTargetPose.srv
         ExecutePlan.srv
 )
-
+add_service_files(
+        DIRECTORY srv/publish
+        FILES
+        pub.srv
+)
 generate_messages(
         DEPENDENCIES
         std_msgs

@@ -10,25 +10,31 @@ rospy.init_node('handeye_calibration_publisher')
 while rospy.get_time() == 0.0:
     pass
 
-inverse = rospy.get_param('inverse')
-filename = rospy.get_param('calibration_file')
+# inverse = rospy.get_param('inverse')
+# filename = rospy.get_param('calibration_file')
+inverse = False
+filename = "/home/jetson/.ros/easy_handeye/my_calibration_eye_on_hand.yaml"
 
 if filename == '':
     rospy.logdebug('No path specified for the calibration file, loading from the standard location')
-    filename = HandeyeCalibration.filename_for_namespace(rospy.get_namespace())
+    # filename = HandeyeCalibration.filename_for_namespace(rospy.get_namespace())
+    filename = "my_calibration"
 
 rospy.loginfo("Loading the calibration from file: %s", filename)
 calib = HandeyeCalibration.from_filename(filename)
 
 if calib.parameters.eye_on_hand:
-    overriding_robot_effector_frame = rospy.get_param('robot_effector_frame')
+    # overriding_robot_effector_frame = rospy.get_param('robot_effector_frame')
+    overriding_robot_effector_frame = ""
     if overriding_robot_effector_frame != "":
         calib.transformation.header.frame_id = overriding_robot_effector_frame
 else:
-    overriding_robot_base_frame = rospy.get_param('robot_base_frame')
+    # overriding_robot_base_frame = rospy.get_param('robot_base_frame')
+    overriding_robot_base_frame = ""
     if overriding_robot_base_frame != "":
         calib.transformation.header.frame_id = overriding_robot_base_frame
-overriding_tracking_base_frame = rospy.get_param('tracking_base_frame')
+# overriding_tracking_base_frame = rospy.get_param('tracking_base_frame')
+overriding_tracking_base_frame = ""
 if overriding_tracking_base_frame != "":
     calib.transformation.child_frame_id = overriding_tracking_base_frame
 
