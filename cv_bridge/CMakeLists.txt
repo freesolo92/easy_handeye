@@ -7,6 +7,7 @@ if(NOT ANDROID)
   find_package(PythonLibs)
 
   if(PYTHONLIBS_VERSION_STRING VERSION_LESS "3.8")
+  # comment this part
     # Debian Buster
   #   find_package(Boost REQUIRED python37)
   # else()
