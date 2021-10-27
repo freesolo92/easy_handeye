@@ -16,7 +16,7 @@ class HandeyeServerRobot:
         if not namespace.endswith('/'):
             namespace = namespace+'/'
         self.parameters = HandeyeCalibrationParameters.init_from_parameter_server(namespace)
-        angle_delta = math.radians(rospy.get_param('~rotation_delta_degrees', 25))
+        angle_delta = math.radians(rospy.get_param('~rotation_delta_degrees', 10))
         translation_delta = rospy.get_param('~translation_delta_meters', 0.1)
         max_velocity_scaling = rospy.get_param('~max_velocity_scaling', 0.5)
         max_acceleration_scaling = rospy.get_param('~max_acceleration_scaling', 0.5)
