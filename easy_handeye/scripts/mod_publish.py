@@ -58,8 +58,20 @@ def callback_server(requ):
 
     broadcaster.sendTransform(static_transformStamped)
     # rospy.spin()
+    return ehm.srv.pubResponse(True)
+        
+    # else:
+     
+    #     # rospy.signal_shutdown('Terminate publishing tf calibration')
+    #     return ehm.srv.pubResponse(requ.state)
 
 def init_server():
     rospy.init_node('handeye_calibration_publisher')
-    s = rospy.Service('callback_server', rospy_tutorials.srv.AddTwoInts, add_two_ints)
+    s = rospy.Service('/my_calibration_eye_on_hand/publish_calibration', ehm.srv.pub, callback_server)
     rospy.spin()
+
+def main():
+    init_server()
+
+if __name__ == "__main__":
+    main()
