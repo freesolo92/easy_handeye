@@ -23,7 +23,7 @@ class CalibrationMovements:
             self.mgc = MoveGroupCommander(move_group_name, robot_description=move_group_namespace+'robot_description', ns=move_group_namespace)
         else:
             self.mgc = MoveGroupCommander(move_group_name)
-        self.mgc.set_planner_id("RRTConnectkConfigDefault")  # TODO: this is only needed for the UR5
+        # self.mgc.set_planner_id("RRTConnectkConfigDefault")  # TODO: this is only needed for the UR5
         self.mgc.set_max_velocity_scaling_factor(max_velocity_scaling)
         self.mgc.set_max_acceleration_scaling_factor(max_acceleration_scaling)
         self.start_pose = self.mgc.get_current_pose()
@@ -48,6 +48,8 @@ class CalibrationMovements:
         self.target_poses = self._compute_poses_around_state(self.start_pose, self.angle_delta, self.translation_delta)
         self.current_pose_index = -1
         ret = self._check_target_poses(self.joint_limits)
+        # ret = True
+        # print(ret)
         if ret:
             rospy.loginfo("Set current pose as home")
             return True
