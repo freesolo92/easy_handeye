@@ -12,8 +12,8 @@
     <arg name="move_group_namespace" default="/"  doc="the namespace of move_group for the automatic robot motion with MoveIt!" />
     <arg name="move_group" default="manipulator"  doc="the name of move_group for the automatic robot motion with MoveIt!" />
 
-    <arg name="translation_delta_meters" default="0.01" doc="the maximum movement that the robot should perform in the translation phase" />
-    <arg name="rotation_delta_degrees" default="2" doc="the maximum rotation that the robot should perform" />
+    <arg name="translation_delta_meters" default="0.1" doc="the maximum movement that the robot should perform in the translation phase" />
+    <arg name="rotation_delta_degrees" default="10" doc="the maximum rotation that the robot should perform" />
     <arg name="robot_velocity_scaling" default="0.3" doc="the maximum speed the robot should reach, as a factor of the speed declared in the joint_limits.yaml" />
     <arg name="robot_acceleration_scaling" default="0.2" doc="the maximum acceleration the robot should reach, as a factor of the acceleration declared in the joint_limits.yaml" />
 
@@ -69,7 +69,7 @@
               output="screen" />
 
         <!-- start rqt GUI for taking_samples -->
-        <!-- <node if="$(arg start_sampling_gui)" name="$(anon namespace)_rqt" pkg="rqt_easy_handeye" type="rqt_easy_handeye" respawn="false" output="screen" /> -->
+        <node if="$(arg start_sampling_gui)" name="$(anon namespace)_rqt" pkg="rqt_easy_handeye" type="rqt_easy_handeye" respawn="false" output="screen" />
 
         <!-- start the GUI for moving the robot around the starting pose -->
         <!-- <node unless="$(arg freehand_robot_movement)" name="calibration_mover" pkg="rqt_easy_handeye" type="rqt_calibrationmovements" respawn="false" >
